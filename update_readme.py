@@ -57,19 +57,29 @@ if total_bytes == 0:
     print("No languages found in the repositories.")
     exit(1)
 
-# ساختن متن برای README
-readme_content = "### Languages ​​used in my repositories\n\n"
-readme_content += "| programming language | usage percentage |\n"
-readme_content += "|-------------------|---------------|\n"
+# ساختن متن جدید برای اضافه‌کردن به README
+new_content = "\n\n### زبان‌های استفاده‌شده در ریپوزیتوری‌های من\n\n"
+new_content += "| زبان برنامه‌نویسی | درصد استفاده |\n"
+new_content += "|-------------------|---------------|\n"
 
 for language, bytes_used in languages_total.items():
     percentage = (bytes_used / total_bytes) * 100
-    readme_content += f"| {language} | {percentage:.2f}% |\n"
+    new_content += f"| {language} | {percentage:.2f}% |\n"
 
-# به‌روزرسانی فایل README.md
+# خواندن محتوای فعلی فایل README.md
+try:
+    with open("README.md", "r", encoding="utf-8") as readme_file:
+        current_content = readme_file.read()
+except FileNotFoundError:
+    current_content = ""
+
+# اضافه کردن محتوای جدید به محتوای قبلی
+final_content = current_content + new_content
+
+# به‌روزرسانی فایل README.md با محتوای جدید
 try:
     with open("README.md", "w", encoding="utf-8") as readme_file:
-        readme_file.write(readme_content)
+        readme_file.write(final_content)
     print("README.md updated successfully.")
 except Exception as e:
     print(f"Failed to update README.md: {e}")
