@@ -1,0 +1,35 @@
+name: Update README with GitHub Languages
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # اجرای خودکار هر روز در ساعت 00:00
+  workflow_dispatch:  # امکان اجرای دستی
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install requests
+
+    - name: Run Python script to update README
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # استفاده از توکن امن
+      run: python update_readme.py
+
+    - name: Commit changes
+      run: |
+        git config --global user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+        git add README.md
+        git commit -m "Update README with latest language stats"
+        git push
