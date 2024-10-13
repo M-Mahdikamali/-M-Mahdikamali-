@@ -22,13 +22,11 @@ jobs:
       run: pip install requests
 
     - name: Run Python script to update README
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}  # استفاده از توکن شخصی امن
       run: python update_readme.py
 
     - name: Commit changes
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}  # استفاده از توکن شخصی امن
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}  # استفاده از توکن شخصی که به عنوان GH_PAT ذخیره شده
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
