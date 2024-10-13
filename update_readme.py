@@ -2,7 +2,7 @@ import requests
 import os
 
 # دریافت توکن از متغیر محیطی
-GITHUB_TOKEN = os.getenv('GH_TOKEN')
+GITHUB_TOKEN = os.getenv('GH_PAT')
 USERNAME = "M-Mahdikamali"  # نام کاربری گیت‌هاب شما
 
 # هدرها برای احراز هویت
@@ -11,7 +11,7 @@ headers = {
 }
 
 # دریافت لیست ریپوزیتوری‌های کاربر
-repos_url = f"https://api.github.com/users/{USERNAME}/repos"
+repos_url = f"https://api.github.com/users/M-Mahdikamali/repos"
 repos_response = requests.get(repos_url, headers=headers)
 
 # بررسی اینکه آیا درخواست موفق بوده است یا خیر
