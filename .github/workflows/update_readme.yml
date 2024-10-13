@@ -35,13 +35,3 @@ jobs:
         git add README.md
         git commit -m "Update README with latest language stats"
         git push https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main
-        
-  update-readme-with-blog:
-    name: Update this repos README with latest blog posts
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: gautamkrishnar/blog-post-workflow@master
-        with:
-          max_post_count: "4"
-          feed_list: "https://dev.to/feed/itszed0"
