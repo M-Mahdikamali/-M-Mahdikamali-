@@ -58,8 +58,8 @@ if total_bytes == 0:
     exit(1)
 
 # ساختن متن جدید برای اضافه‌کردن به README
-new_content = "### Languages ​​used in my repositories\n"
-new_content += "| programming language | usage percentage |\n"
+new_content = "\n\n### Languages ​​used in my repositories\n\n"
+new_content += "| Programming language | Usage percentage |\n"
 new_content += "|-------------------|---------------|\n"
 
 for language, bytes_used in languages_total.items():
