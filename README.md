@@ -1,6 +1,7 @@
 <div id="header" align="center">
   <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/><br>
   <img src="https://komarev.com/ghpvc/?username=M-Mahdikamali&style=flat-square&color=blue" alt=""/>
+  ranking_index = (byte_count ^ size_weight) * (repo_count ^ count_weight)
 </div>
 
 ### :hammer_and_wrench: Languages and Tools :
@@ -27,5 +28,4 @@
 
 ### :fire: My Stats :
 [![GitHub Streak](https://streak-stats.demolab.com?user=M-Mahdikamali&theme=radical&border_radius=22&mode=weekly)](https://git.io/streak-stats)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=pie)](https://github.com/anuraghazra/github-readme-stats))
-
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=M-Mahdikamali&layout=pie)](https://github.com/M-Mahdikamali/github-readme-stats)
