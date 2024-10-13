@@ -24,6 +24,8 @@ jobs:
       run: pip install requests
 
     - name: Run Python script to update README
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}  # استفاده از secret به درستی
       run: python update_readme.py
 
     - name: Check for changes
