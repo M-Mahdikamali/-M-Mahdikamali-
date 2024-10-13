@@ -1,13 +1,3 @@
-### زبان‌های استفاده‌شده در ریپوزیتوری‌های من
-
-| زبان برنامه‌نویسی | درصد استفاده |
-|-------------------|---------------|
-| Java | 8.34% |
-| Python | 5.40% |
-| Jupyter Notebook | 85.24% |
-| Shell | 0.02% |
-| C++ | 1.00% |
-
 <div id="header" align="center">
   <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/><br>
   <img src="https://komarev.com/ghpvc/?username=M-Mahdikamali&style=flat-square&color=blue" alt=""/>
@@ -52,3 +42,14 @@
   <br>
   <br>
 </div>
+
+### زبان‌های استفاده‌شده در ریپوزیتوری‌های من
+
+| زبان برنامه‌نویسی | درصد استفاده |
+|-------------------|---------------|
+| Java | 8.34% |
+| Python | 5.40% |
+| Jupyter Notebook | 85.24% |
+| Shell | 0.02% |
+| C++ | 1.00% |
+
