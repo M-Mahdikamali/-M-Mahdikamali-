@@ -13,25 +13,37 @@ headers = {
 # دریافت لیست ریپوزیتوری‌های کاربر
 repos_url = f"https://api.github.com/users/{USERNAME}/repos"
 repos_response = requests.get(repos_url, headers=headers)
-repos = repos_response.json()
+
+# بررسی اینکه آیا درخواست موفق بوده است یا خیر
+if repos_response.status_code == 200:
+    repos = repos_response.json()
+else:
+    print(f"Failed to fetch repos: {repos_response.status_code}")
+    repos = []
 
 # متغیری برای نگهداری اطلاعات زبان‌ها
 languages_total = {}
 
 # دریافت اطلاعات زبان‌های هر ریپوزیتوری
 for repo in repos:
-    languages_url = repo["languages_url"]
-    
-    # دریافت زبان‌های هر ریپوزیتوری
-    languages_response = requests.get(languages_url, headers=headers)
-    languages = languages_response.json()
-    
-    # جمع‌آوری کل بایت‌های زبان‌ها
-    for language, bytes_used in languages.items():
-        if language in languages_total:
-            languages_total[language] += bytes_used
+    if isinstance(repo, dict) and "languages_url" in repo:
+        languages_url = repo["languages_url"]
+        
+        # دریافت زبان‌های هر ریپوزیتوری
+        languages_response = requests.get(languages_url, headers=headers)
+        if languages_response.status_code == 200:
+            languages = languages_response.json()
+            
+            # جمع‌آوری کل بایت‌های زبان‌ها
+            for language, bytes_used in languages.items():
+                if language in languages_total:
+                    languages_total[language] += bytes_used
+                else:
+                    languages_total[language] = bytes_used
         else:
-            languages_total[language] = bytes_used
+            print(f"Failed to fetch languages for {repo['name']}: {languages_response.status_code}")
+    else:
+        print(f"Unexpected format for repo: {repo}")
 
 # محاسبه مجموع کل بایت‌ها برای محاسبه درصد
 total_bytes = sum(languages_total.values())
