@@ -53,3 +53,14 @@
 | Jupyter Notebook | 85.21% |
 | Shell | 0.02% |
 | C++ | 0.99% |
+
+
+### Languages ​​used in my repositories
+
+| Programming language | Usage percentage |
+|-------------------|---------------|
+| Java | 8.34% |
+| Python | 5.43% |
+| Jupyter Notebook | 85.21% |
+| Shell | 0.02% |
+| C++ | 1.00% |
