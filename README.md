@@ -1,3 +1,4 @@
+<!-- LANGUAGES_SECTION_START -->
 <div id="header" align="center">
   <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/><br>
   <img src="https://komarev.com/ghpvc/?username=M-Mahdikamali&style=flat-square&color=blue" alt=""/>
@@ -42,25 +43,4 @@
   <br>
   <br>
 </div>
-
-
-### زبان‌های استفاده‌شده در ریپوزیتوری‌های من
-
-| زبان برنامه‌نویسی | درصد استفاده |
-|-------------------|---------------|
-| Java | 8.34% |
-| Python | 5.44% |
-| Jupyter Notebook | 85.21% |
-| Shell | 0.02% |
-| C++ | 0.99% |
-
-
-### Languages ​​used in my repositories
-
-| Programming language | Usage percentage |
-|-------------------|---------------|
-| Java | 8.34% |
-| Python | 5.43% |
-| Jupyter Notebook | 85.21% |
-| Shell | 0.02% |
-| C++ | 1.00% |
+<!-- LANGUAGES_SECTION_END -->
