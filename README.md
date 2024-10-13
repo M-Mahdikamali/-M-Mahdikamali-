@@ -27,5 +27,5 @@
 
 ### :fire: My Stats :
 [![GitHub Streak](https://streak-stats.demolab.com?user=M-Mahdikamali&theme=radical&border_radius=22&mode=weekly)](https://git.io/streak-stats)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=M-Mahdikamali&layout=pie)](https://github.com/M-Mahdikamali/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=pie)](https://github.com/anuraghazra/github-readme-stats))
 
