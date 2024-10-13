@@ -1,5 +1,6 @@
 import requests
 import os
+import re
 
 # دریافت توکن از متغیر محیطی
 GITHUB_TOKEN = os.getenv('GH_PAT')
@@ -57,7 +58,7 @@ if total_bytes == 0:
     print("No languages found in the repositories.")
     exit(1)
 
-# ساختن متن جدید برای اضافه‌کردن به README
+# ساختن محتوای جدید برای زبان‌ها
 new_content = "\n\n### Languages ​​used in my repositories\n\n"
 new_content += "| Programming language | Usage percentage |\n"
 new_content += "|-------------------|---------------|\n"
@@ -73,13 +74,27 @@ try:
 except FileNotFoundError:
     current_content = ""
 
-# اضافه کردن محتوای جدید به محتوای قبلی
-final_content = current_content + new_content
+# جایگزین کردن محتوای جدید بین نشانه‌های مشخص‌شده
+start_marker = "<!-- LANGUAGES_SECTION_START -->"
+end_marker = "<!-- LANGUAGES_SECTION_END -->"
 
-# به‌روزرسانی فایل README.md با محتوای جدید
+# الگوی regex برای پیدا کردن بلوک بین نشانه‌ها
+pattern = re.compile(f"{start_marker}.*?{end_marker}", re.DOTALL)
+
+# محتوای جدید با بلوک جدید
+new_block = f"{start_marker}\n{new_content}\n{end_marker}"
+
+# جایگزین کردن بلوک قدیمی با بلوک جدید
+if pattern.search(current_content):
+    updated_content = pattern.sub(new_block, current_content)
+else:
+    # اگر نشانه‌ها پیدا نشدند، بلوک را به انتهای فایل اضافه می‌کنیم
+    updated_content = current_content + "\n" + new_block
+
+# نوشتن محتوای جدید در فایل README.md
 try:
     with open("README.md", "w", encoding="utf-8") as readme_file:
-        readme_file.write(final_content)
+        readme_file.write(updated_content)
     print("README.md updated successfully.")
 except Exception as e:
     print(f"Failed to update README.md: {e}")
