@@ -26,7 +26,11 @@ jobs:
     - name: Run Python script to update README
       run: python update_readme.py
 
+    - name: Check for changes
+      run: git diff --exit-code || echo "Changes detected."
+
     - name: Commit changes
+      if: ${{ success() && steps['Check for changes'].outputs.diff_exit_code != 0 }}
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}  # استفاده از توکن شخصی امن
       run: |
