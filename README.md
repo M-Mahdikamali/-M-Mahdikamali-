@@ -44,6 +44,7 @@
 </div>
 <!-- LANGUAGES_SECTION_START -->
 
+<div align="center">
 
 ### Languages ​​used in my repositories
 
@@ -54,5 +55,6 @@
 | Jupyter Notebook | 85.10% |
 | Shell | 0.02% |
 | C++ | 0.99% |
+</div>
 
 <!-- LANGUAGES_SECTION_END -->
