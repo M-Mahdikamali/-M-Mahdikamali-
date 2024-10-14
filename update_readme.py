@@ -58,14 +58,22 @@ if total_bytes == 0:
     print("No languages found in the repositories.")
     exit(1)
 
-# ساختن محتوای جدید برای زبان‌ها
-new_content = "\n\n### Languages ​​used in my repositories\n\n"
-new_content += "| Programming language | Usage percentage |\n"
-new_content += "|-------------------|---------------|\n"
+# ساختن محتوای جدید برای زبان‌ها و وسط‌چین کردن جدول
+new_content = """
+<div align="center">
+
+### Languages ​​used in my repositories
+
+| Programming language | Usage percentage |
+|-------------------|---------------|
+"""
 
 for language, bytes_used in languages_total.items():
     percentage = (bytes_used / total_bytes) * 100
     new_content += f"| {language} | {percentage:.2f}% |\n"
+
+new_content += "</div>\n"
+
 
 # خواندن محتوای فعلی فایل README.md
 try:
