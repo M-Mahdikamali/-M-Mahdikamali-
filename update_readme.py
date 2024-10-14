@@ -17,8 +17,12 @@ headers = {
 }
 
 # دریافت لیست ریپوزیتوری‌های کاربر
-repos_url = f"https://api.github.com/users/{USERNAME}/repos"
+repos_url = f"https://api.github.com/user/repos?visibility=all"
 repos_response = requests.get(repos_url, headers=headers)
+
+# بررسی وضعیت و محتوای پاسخ API
+print(repos_response.status_code)  # وضعیت پاسخ
+print(repos_response.json())       # محتوای پاسخ
 
 # بررسی اینکه آیا درخواست موفق بوده است یا خیر
 if repos_response.status_code == 200:
