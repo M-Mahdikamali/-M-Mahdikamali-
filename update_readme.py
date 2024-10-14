@@ -81,18 +81,22 @@ end_marker = "<!-- LANGUAGES_SECTION_END -->"
 # الگوی regex برای پیدا کردن بلوک بین نشانه‌ها
 pattern = re.compile(f"{start_marker}(.*?){end_marker}", re.DOTALL)
 
-# اگر بلوک موجود نیست یا بلوک بین نشانه‌ها خالی است، محتوا را اضافه کنید
+# پیدا کردن محتوای فعلی بین بلوک‌ها
 match = pattern.search(current_content)
 if match:
-    existing_content = match.group(1).strip()
-    if not existing_content:
-        print("Section is empty, updating content...")
-        updated_content = pattern.sub(f"{start_marker}\n{new_content}\n{end_marker}", current_content)
-    else:
-        print("Content exists, no changes needed.")
+    current_block_content = match.group(1).strip()
 else:
-    print("Markers not found, adding section...")
-    updated_content = current_content + f"\n{start_marker}\n{new_content}\n{end_marker}"
+    current_block_content = ""
+
+# اگر بلوک خالی است یا تغییر کرده، محتوای جدید را جایگزین می‌کنیم
+if not current_block_content:
+    print("Block is empty, adding new content.")
+    updated_content = pattern.sub(f"{start_marker}\n{new_content}\n{end_marker}", current_content)
+elif current_block_content == new_content.strip():
+    print("Content is already up-to-date, no changes needed.")
+else:
+    print("Content has changed, updating block.")
+    updated_content = pattern.sub(f"{start_marker}\n{new_content}\n{end_marker}", current_content)
 
 # نوشتن محتوای جدید در فایل README.md
 try:
