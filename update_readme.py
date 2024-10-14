@@ -68,8 +68,11 @@ new_content = """
 |-------------------|---------------|
 """
 
-for language, bytes_used in languages_total.items():
-    percentage = (bytes_used / total_bytes) * 100
+# شمارش تعداد زبان‌ها به جای بایت‌ها
+total_repositories = sum(languages_total.values())
+
+for language, repo_count in languages_total.items():
+    percentage = (repo_count / total_repositories) * 100
     new_content += f"| {language} | {percentage:.2f}% |\n"
 
 new_content += "</div>\n"
