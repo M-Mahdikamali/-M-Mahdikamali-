@@ -31,8 +31,10 @@ jobs:
     - name: Check for changes
       id: changes_check
       run: |
-        git add .
-        if git diff --quiet; then
+        git status  # بررسی وضعیت فایل‌ها
+        git add README.md  # اضافه کردن فایل به stage
+        git diff --staged  # بررسی تغییرات در فایل staged
+        if git diff --staged --quiet; then
           echo "No changes detected."
           echo "changes=false" >> $GITHUB_ENV
         else
