@@ -66,6 +66,7 @@ new_content = """
 |-------------------|---------------|
 """
 # محاسبه درصد تعداد پروژه‌ها برای هر زبان با سه رقم اعشار و گرد کردن به نزدیکترین مقدار
+print(languages_count)
 for language, count in languages_count.items():
     percentage = round((count / total_projects) * 100, 2)  # گرد کردن به دو رقم اعشار
     new_content += f"| {language} | {percentage:.2f}% |\n"  # نمایش با دو رقم اعشار
