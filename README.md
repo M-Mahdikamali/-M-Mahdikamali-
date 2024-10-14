@@ -43,8 +43,8 @@
 | Programming language | Usage percentage |
 |-------------------|---------------|
 | Java | 8.30% |
-| Python | 5.90% |
-| Jupyter Notebook | 84.78% |
+| Python | 5.92% |
+| Jupyter Notebook | 84.77% |
 | Shell | 0.02% |
 | C++ | 0.99% |
 </div>
