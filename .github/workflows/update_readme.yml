@@ -35,14 +35,11 @@ jobs:
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
+        
+        # بررسی تغییرات و کامیت در صورت وجود
         git add README.md
         git diff --quiet || git commit -am "Update README with latest language stats"
-        git stash
-        git pull https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main --rebase --allow-unrelated-histories
-        git stash pop
+        
+        # همگام‌سازی تغییرات و پوش کردن
+        git pull --rebase https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main --allow-unrelated-histories
         git push https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main
-
-
-
-
-
