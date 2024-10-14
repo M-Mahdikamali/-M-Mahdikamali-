@@ -36,4 +36,17 @@
 </div>
 <!-- LANGUAGES_SECTION_START -->
 
+<div align="center">
+
+### Languages ​​used in my repositories
+
+| Programming language | Usage percentage |
+|-------------------|---------------|
+| Java | 22.22% |
+| Python | 48.15% |
+| Jupyter Notebook | 7.41% |
+| Shell | 7.41% |
+| C++ | 14.81% |
+</div>
+
 <!-- LANGUAGES_SECTION_END -->
