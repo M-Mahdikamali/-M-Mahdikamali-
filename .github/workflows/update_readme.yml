@@ -31,23 +31,11 @@ jobs:
     - name: Check for changes
       run: git diff --exit-code || echo "Changes detected."
   
-    - name: Commit changes if any
+    - name: Commit changes
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
-        
-        # ذخیره موقت تغییرات
-        git stash
-
-        # همگام‌سازی تغییرات از سرور
-        git pull --rebase https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main --allow-unrelated-histories
-        
-        # بازگرداندن تغییرات ذخیره شده
-        git stash pop
-
-        # بررسی تغییرات و کامیت در صورت وجود
         git add README.md
-        git diff --quiet || git commit -am "Update README with latest language stats"
-        
-        # پوش کردن تغییرات به سرور
+        git commit -m "Update README with latest language stats"
         git push https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main
+
