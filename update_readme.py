@@ -59,6 +59,7 @@ if total_bytes == 0:
     exit(1)
 
 # ساختن محتوای جدید برای زبان‌ها
+new_content = "<div align='center'>\n\n"
 new_content = "\n\n### Languages ​​used in my repositories\n\n"
 new_content += "| Programming language | Usage percentage |\n"
 new_content += "|-------------------|---------------|\n"
