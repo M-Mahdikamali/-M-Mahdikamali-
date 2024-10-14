@@ -13,7 +13,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        token: ${{ secrets.GH_PAT }}  # استفاده از توکن شخصی برای checkout
+        token: ${{ secrets.GH_PAT }}
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -25,17 +25,26 @@ jobs:
 
     - name: Run Python script to update README
       env:
-        GH_PAT: ${{ secrets.GH_PAT }}  # استفاده از secret به درستی
+        GH_PAT: ${{ secrets.GH_PAT }}
       run: python update_readme.py
 
     - name: Check for changes
-      run: git diff --exit-code || echo "Changes detected."
-  
-    - name: Commit changes
+      id: changes_check
+      run: |
+        git add README.md
+        if git diff --quiet; then
+          echo "No changes detected."
+          echo "changes=false" >> $GITHUB_ENV
+        else
+          echo "Changes detected."
+          echo "changes=true" >> $GITHUB_ENV
+        fi
+
+    - name: Commit and push changes if any
+      if: env.changes == 'true'
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
-        git add README.md
-        git commit -m "Update README with latest language stats"
+        git commit -am "Update README with latest language stats"
+        git pull --rebase https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main --allow-unrelated-histories
         git push https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main
-
