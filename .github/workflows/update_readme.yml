@@ -31,8 +31,10 @@ jobs:
     - name: Check for changes
       run: git diff --exit-code || echo "Changes detected."
 
-    - name: Commit changes
+    - name: Commit changes if any
       run: |
+        git diff --quiet || git commit -am "Update README with latest language stats"
+        git push https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
         git add README.md
