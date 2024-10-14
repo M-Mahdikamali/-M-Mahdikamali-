@@ -40,16 +40,14 @@ for repo in repos:
         if languages_response.status_code == 200:
             languages = languages_response.json()
             
-            # شمارش تعداد پروژه‌هایی که از هر زبان استفاده کرده‌اند
+            # اطمینان از اینکه هر زبان یک بار شمارش شود
             for language in languages.keys():
-                if language in languages_count:
-                    languages_count[language] += 1
-                else:
-                    languages_count[language] = 1
+                languages_count[language] = languages_count.get(language, 0) + 1
         else:
             print(f"Failed to fetch languages for {repo['name']}: {languages_response.status_code} - {languages_response.text}")
     else:
         print(f"Unexpected format for repo: {repo}")
+
 
 # محاسبه مجموع کل پروژه‌ها
 total_projects = sum(languages_count.values())
@@ -69,10 +67,8 @@ new_content = """
 """
 # محاسبه درصد تعداد پروژه‌ها برای هر زبان با سه رقم اعشار و گرد کردن به نزدیکترین مقدار
 for language, count in languages_count.items():
-    percentage = round((count / total_projects) * 100, 3)
-    new_content += f"| {language} | {percentage:.2f}% |\n"
-
-
+    percentage = round((count / total_projects) * 100, 2)  # گرد کردن به دو رقم اعشار
+    new_content += f"| {language} | {percentage:.2f}% |\n"  # نمایش با دو رقم اعشار
 
 new_content += "</div>\n"
 
