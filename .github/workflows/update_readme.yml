@@ -37,7 +37,10 @@ jobs:
         git config --global user.email "action@github.com"
         git add .
         git diff --quiet || git commit -am "Update README with latest language stats"
+        git stash
         git pull https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main --rebase --allow-unrelated-histories
+        git stash pop
         git push https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main
+
 
 
