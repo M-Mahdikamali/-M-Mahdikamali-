@@ -79,22 +79,19 @@ start_marker = "<!-- LANGUAGES_SECTION_START -->"
 end_marker = "<!-- LANGUAGES_SECTION_END -->"
 
 # الگوی regex برای پیدا کردن بلوک بین نشانه‌ها
-pattern = re.compile(f"{start_marker}(.*?){end_marker}", re.DOTALL)
+pattern = re.compile(f"{start_marker}.*?{end_marker}", re.DOTALL)
 
-# بررسی اینکه آیا بلوک وجود دارد
-match = pattern.search(current_content)
-
-if match:
-    # حالت 2: اگر محتوای فعلی با محتوای جدید یکی است، هیچ تغییری اعمال نکنید
-    current_block = match.group(1).strip()
-    if current_block == new_content.strip():
-        print("No changes detected in the languages section.")
-        exit(0)
+# بررسی اینکه آیا بلوک بین نشانه‌ها خالی است یا نیاز به به‌روزرسانی دارد
+if pattern.search(current_content):
+    current_block = pattern.search(current_content).group(0)
+    if new_content in current_block:
+        print("No changes needed.")
+        updated_content = current_content  # اگر هیچ تغییری نیاز نباشد، محتوا تغییر نمی‌کند.
     else:
-        # حالت 3: اگر محتوای فعلی متفاوت است، بلوک را به‌روز کنید
+        print("Updating content.")
         updated_content = pattern.sub(f"{start_marker}\n{new_content}\n{end_marker}", current_content)
 else:
-    # حالت 1: اگر بلوک موجود نبود، بلوک جدید را اضافه کنید
+    print("Adding new content.")
     updated_content = current_content + f"\n{start_marker}\n{new_content}\n{end_marker}"
 
 # نوشتن محتوای جدید در فایل README.md
