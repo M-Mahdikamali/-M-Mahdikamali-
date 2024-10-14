@@ -60,14 +60,13 @@ if total_bytes == 0:
 
 # ساختن محتوای جدید برای زبان‌ها
 new_content = "<div align='center'>\n\n"
-new_content += "\n\n### Languages ​​used in my repositories\n\n"
+new_content = "\n\n### Languages ​​used in my repositories\n\n"
 new_content += "| Programming language | Usage percentage |\n"
 new_content += "|-------------------|---------------|\n"
 
 for language, bytes_used in languages_total.items():
     percentage = (bytes_used / total_bytes) * 100
     new_content += f"| {language} | {percentage:.2f}% |\n"
-new_content += "</div>\n"  # بستن تگ <div> برای وسط‌چین کردن
 
 # خواندن محتوای فعلی فایل README.md
 try:
