@@ -82,19 +82,12 @@ end_marker = "<!-- LANGUAGES_SECTION_END -->"
 pattern = re.compile(f"{start_marker}.*?{end_marker}", re.DOTALL)
 
 # اگر بلوک موجود نیست، بلوک را به انتهای فایل اضافه کنید
-if not pattern.search(current_content):
-    updated_content = current_content + f"\n{start_marker}\n{new_content}\n{end_marker}"
-else:
-    # اگر بلوک موجود بود، آن را به‌روز کنید
-    updated_content = pattern.sub(f"{start_marker}\n{new_content}\n{end_marker}", current_content)
-
-
-# جایگزین کردن بلوک قدیمی با بلوک جدید
+# اگر بلوک موجود بود، آن را به‌روز کنید
 if pattern.search(current_content):
-    updated_content = pattern.sub(new_block, current_content)
+    updated_content = pattern.sub(f"{start_marker}\n{new_content}\n{end_marker}", current_content)
 else:
     # اگر نشانه‌ها پیدا نشدند، بلوک را به انتهای فایل اضافه می‌کنیم
-    updated_content = current_content + "\n" + new_block
+    updated_content = current_content + f"\n{start_marker}\n{new_content}\n{end_marker}"
 
 # نوشتن محتوای جدید در فایل README.md
 try:
