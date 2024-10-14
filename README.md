@@ -34,6 +34,7 @@
   <br>
   <br>
 </div>
+<!-- 
 <div align="center">
   <a href="https://github.com/M-Mahdikamali/github-readme-activity-graph">
     <img src="https://github-readme-activity-graph.vercel.app/graph?username=M-Mahdikamali&theme=dracula" alt="M-Mahdikamali's github activity graph">
@@ -41,7 +42,9 @@
   <br>
   <br>
   <br>
-</div>
+</div> 
+-->
+
 <!-- LANGUAGES_SECTION_START -->
 
 <div align="center">
