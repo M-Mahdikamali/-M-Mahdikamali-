@@ -35,7 +35,9 @@ jobs:
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
+        git pull https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main --rebase
         git diff --quiet || git commit -am "Update README with latest language stats"
         git push https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main
+
   
 
