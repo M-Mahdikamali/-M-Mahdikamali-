@@ -67,11 +67,11 @@ new_content = """
 | Programming language | Usage percentage |
 |-------------------|---------------|
 """
-
-# محاسبه درصد تعداد پروژه‌ها برای هر زبان
+# محاسبه درصد تعداد پروژه‌ها برای هر زبان با دو رقم اعشار
 for language, count in languages_count.items():
     percentage = (count / total_projects) * 100
     new_content += f"| {language} | {percentage:.2f}% |\n"
+
 
 new_content += "</div>\n"
 
