@@ -103,5 +103,11 @@ try:
     with open("README.md", "w", encoding="utf-8") as readme_file:
         readme_file.write(updated_content)
     print("README.md updated successfully.")
+    
+    # اضافه کردن کد برای چاپ محتوای نهایی فایل README.md
+    print("Updated README.md content:\n")
+    print(updated_content)  # چاپ محتوای نهایی برای بررسی
+    
 except Exception as e:
     print(f"Failed to update README.md: {e}")
+
