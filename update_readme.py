@@ -27,8 +27,8 @@ else:
     print(f"Failed to fetch repos: {repos_response.status_code} - {repos_response.text}")
     repos = []
 
-# متغیری برای نگهداری اطلاعات زبان‌ها
-languages_total = {}
+# متغیری برای نگهداری تعداد پروژه‌ها به ازای هر زبان
+languages_count = {}
 
 # دریافت اطلاعات زبان‌های هر ریپوزیتوری
 for repo in repos:
@@ -40,21 +40,21 @@ for repo in repos:
         if languages_response.status_code == 200:
             languages = languages_response.json()
             
-            # جمع‌آوری کل بایت‌های زبان‌ها
-            for language, bytes_used in languages.items():
-                if language in languages_total:
-                    languages_total[language] += bytes_used
+            # شمارش تعداد پروژه‌هایی که از هر زبان استفاده کرده‌اند
+            for language in languages.keys():
+                if language in languages_count:
+                    languages_count[language] += 1
                 else:
-                    languages_total[language] = bytes_used
+                    languages_count[language] = 1
         else:
             print(f"Failed to fetch languages for {repo['name']}: {languages_response.status_code} - {languages_response.text}")
     else:
         print(f"Unexpected format for repo: {repo}")
 
-# محاسبه مجموع کل بایت‌ها برای محاسبه درصد
-total_bytes = sum(languages_total.values())
+# محاسبه مجموع کل پروژه‌ها
+total_projects = sum(languages_count.values())
 
-if total_bytes == 0:
+if total_projects == 0:
     print("No languages found in the repositories.")
     exit(1)
 
@@ -68,15 +68,12 @@ new_content = """
 |-------------------|---------------|
 """
 
-# شمارش تعداد زبان‌ها به جای بایت‌ها
-total_repositories = sum(languages_total.values())
-
-for language, repo_count in languages_total.items():
-    percentage = (repo_count / total_repositories) * 100
+# محاسبه درصد تعداد پروژه‌ها برای هر زبان
+for language, count in languages_count.items():
+    percentage = (count / total_projects) * 100
     new_content += f"| {language} | {percentage:.2f}% |\n"
 
 new_content += "</div>\n"
-
 
 # خواندن محتوای فعلی فایل README.md
 try:
