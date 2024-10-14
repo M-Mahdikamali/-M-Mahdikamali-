@@ -31,7 +31,7 @@ jobs:
     - name: Check for changes
       id: changes_check
       run: |
-        git add README.md
+        git add .
         if git diff --quiet; then
           echo "No changes detected."
           echo "changes=false" >> $GITHUB_ENV
@@ -45,6 +45,15 @@ jobs:
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
-        git commit -am "Update README with latest language stats"
+
+        # همگام‌سازی تغییرات با ری‌بیس
         git pull --rebase https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main --allow-unrelated-histories
+
+        # افزودن تغییرات برای کامیت
+        git add .
+
+        # کامیت کردن تغییرات
+        git commit -m "Update README with latest language stats"
+
+        # پوش کردن تغییرات به مخزن
         git push https://M-Mahdikamali:${{ secrets.GH_PAT }}@github.com/M-Mahdikamali/M-Mahdikamali.git HEAD:main
