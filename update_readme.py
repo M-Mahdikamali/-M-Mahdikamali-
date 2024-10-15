@@ -58,6 +58,42 @@ if total_projects == 0:
 
 # ساختن محتوای جدید برای زبان‌ها و وسط‌چین کردن جدول
 new_content = """
+<div id="header" align="center">
+  <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/><br>
+  <img src="https://komarev.com/ghpvc/?username=M-Mahdikamali&style=flat-square&color=blue" alt=""/>
+</div>
+
+### :hammer_and_wrench: Languages and Tools :
+<div>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/java/java-original-wordmark.svg" title="Java" alt="Java" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/jupyter/jupyter-original-wordmark.svg" title="Material UI" alt="Material UI" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/numpy/numpy-plain.svg" title="Numpy" alt="Spring" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original.svg" title="NextJs" alt="React" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/android/android-plain-wordmark.svg" title="Android" alt="Flutter" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/pandas/pandas-original.svg" title="Pandas" alt="Redux " width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/pycharm/pycharm-original.svg"  title="Pycharm" alt="CSS" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/intellij/intellij-original.svg" title="Intellij" alt="HTML" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JavaScript" alt="JavaScript" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/firebase/firebase-plain-wordmark.svg" title="Firebase" alt="Firebase" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/xcode/xcode-original.svg" title="Xcode"  alt="Gatsby" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="MySQL"  alt="MySQL" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/apple/apple-original.svg" title="IOS" alt="NodeJS" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/ubuntu/ubuntu-original.svg" title="Ubuntu" alt="AWS" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" title="Git" **alt="Git" width="40" height="40"/>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/cplusplus/cplusplus-plain.svg" title="C++" **alt="Git" width="40" height="40"/>
+</div>
+
+---
+
+### :fire: My Stats :
+<div align="center">
+  <a href="https://git.io/streak-stats">
+    <img src="https://streak-stats.demolab.com?user=M-Mahdikamali&theme=radical&border_radius=22&mode=weekly" alt="GitHub Streak">
+  </a>
+  <br>
+  <br>
+  <br>
+</div>
 <div align="center">
 
 ### Languages ​​used in my repositories
@@ -72,47 +108,14 @@ for language, count in languages_count.items():
 
 new_content += "</div>\n"
 
-# خواندن محتوای فعلی فایل README.md
-try:
-    with open("README.md", "r", encoding="utf-8") as readme_file:
-        current_content = readme_file.read()
-except FileNotFoundError:
-    current_content = ""
-
-# جایگزین کردن محتوای جدید بین نشانه‌های مشخص‌شده
-start_marker = "<!-- LANGUAGES_SECTION_START -->"
-end_marker = "<!-- LANGUAGES_SECTION_END -->"
-
-# الگوی regex برای پیدا کردن بلوک بین نشانه‌ها
-pattern = re.compile(f"{start_marker}(.*?){end_marker}", re.DOTALL)
-
-# پیدا کردن محتوای فعلی بین بلوک‌ها
-match = pattern.search(current_content)
-if match:
-    current_block_content = match.group(1).strip()
-else:
-    current_block_content = ""
-
-# اگر بلوک خالی است یا تغییر کرده، محتوای جدید را جایگزین می‌کنیم
-if not current_block_content:
-    print("Block is empty, adding new content.")
-    updated_content = pattern.sub(f"{start_marker}\n{new_content}\n{end_marker}", current_content)
-elif current_block_content == new_content.strip():
-    print("Content is already up-to-date, no changes needed.")
-else:
-    print("Content has changed, updating block.")
-    updated_content = pattern.sub(f"{start_marker}\n{new_content}\n{end_marker}", current_content)
-
-# نوشتن محتوای جدید در فایل README.md
 try:
     with open("README.md", "w", encoding="utf-8") as readme_file:
-        readme_file.write(updated_content)
+        readme_file.write(new_content)
     print("README.md updated successfully.")
     
     # اضافه کردن کد برای چاپ محتوای نهایی فایل README.md
     print("Updated README.md content:\n")
-    print(updated_content)  # چاپ محتوای نهایی برای بررسی
-    
+    print(new_content)  # چاپ محتوای نهایی برای بررسی
+
 except Exception as e:
     print(f"Failed to update README.md: {e}")
-
